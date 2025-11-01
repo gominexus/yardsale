@@ -116,8 +116,13 @@ def highlight_last_trade(trader_A,trader_B):
     # Draw a line between the last two shapes that have interacted
     interact_list.append(shapes.Line(trader_x_coords[trader_A],trader_y_coords[trader_A],trader_x_coords[trader_B],trader_y_coords[trader_B],1,color=(255,255,255),batch=interact_batch))
     # Also highlight the two traders who have last traded in white
-    interact_list.append(draw_trader(trader_money[trader_A],trader_x_coords[trader_A],trader_y_coords[trader_A],(255,255,255),interact_batch))
-    interact_list.append(draw_trader(trader_money[trader_B],trader_x_coords[trader_B],trader_y_coords[trader_B],(255,255,255),interact_batch))
+    circle_trader_A = draw_trader(trader_money[trader_A],trader_x_coords[trader_A],trader_y_coords[trader_A],(255,255,255),interact_batch)
+    circle_trader_A_glow = draw_trader(trader_money[trader_A]*2,trader_x_coords[trader_A],trader_y_coords[trader_A],(255,255,255),interact_batch)
+    circle_trader_A_glow.opacity = 100
+    circle_trader_B = draw_trader(trader_money[trader_B],trader_x_coords[trader_B],trader_y_coords[trader_B],(255,255,255),interact_batch)
+    circle_trader_B_glow = draw_trader(trader_money[trader_B]*2,trader_x_coords[trader_B],trader_y_coords[trader_B],(255,255,255),interact_batch)
+    circle_trader_B_glow.opacity = 100
+    interact_list.extend([circle_trader_A,circle_trader_A_glow,circle_trader_B,circle_trader_B_glow])
 
 #  DEFINE THE FUNCTION TO UPDATE STATE
 # ------------------------------------
